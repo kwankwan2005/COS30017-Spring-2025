@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">W03-Calculations</string>
-    <string name="txtPlus">plus</string>
-    <string name="txtMult">mult</string>
-    <string name="btnCalc">EQUALS</string>
-    <string name="hintTxt1">Number 1</string>
-    <string name="hintTxt2">Number 2</string>
-</resources>
