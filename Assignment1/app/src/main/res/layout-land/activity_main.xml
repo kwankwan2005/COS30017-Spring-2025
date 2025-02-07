@@ -88,7 +88,7 @@
                 android:paddingTop="7dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="7dp"
-                android:text="🧗 You haven't climbed yet"
+                android:text="@string/lblNotClimbed"
                 android:textAlignment="center"
                 android:textSize="12sp" />
         </LinearLayout>

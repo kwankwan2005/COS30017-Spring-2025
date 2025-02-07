@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="appName">ClimbingScoreTracker</string>
+    <string name="appName">Lên Đỉnh App</string>
     <string name="btnClimb">Leo lên</string>
     <string name="btnFall">Rơi xuống</string>
     <string name="btnReset">Đặt lại</string>
     <string name="lblCurrentScore">Số điểm:</string>
-    <string name="lblCurrentHold">Lỗ hiện tại:</string>
-    <string name="lblNotClimbed">Hành trình chưa bắt đầu</string>
+    <string name="lblCurrentHold">🧗 Lỗ hiện tại: </string>
+    <string name="lblNotClimbed">🧗 Hành trình chưa bắt đầu</string>
 </resources>
