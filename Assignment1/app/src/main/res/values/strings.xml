@@ -1,0 +1,9 @@
+<resources>
+    <string name="appName">Climbing Score Tracker</string>
+    <string name="btnClimb">Climb</string>
+    <string name="btnFall">Fall</string>
+    <string name="btnReset">Reset</string>
+    <string name="lblCurrentScore">Current score:</string>
+    <string name="lblCurrentHold">"Current hold: "</string>
+    <string name="lblNotClimbed">You haven\'t climbed yet</string>
+</resources>
