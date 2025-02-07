@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">W03-Calculations AU version</string>
-    <string name="txtMult">times</string>
-    <string name="btnCalc">TOTALS</string>
-    <string name="txtPlus">add</string>
-    <string name="hintTxt1">Factor 1</string>
-    <string name="hintTxt2">Factor 2</string>
-</resources>
