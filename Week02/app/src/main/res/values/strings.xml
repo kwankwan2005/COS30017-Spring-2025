@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Lecture02Demo</string>
+    <string name="test">Hello World!</string>
 </resources>
