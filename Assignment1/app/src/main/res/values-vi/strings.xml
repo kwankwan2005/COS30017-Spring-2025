@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="appName">Lên Đỉnh App</string>
+    <string name="appName">Climbing Score Tracker</string>
     <string name="btnClimb">Leo lên</string>
     <string name="btnFall">Rơi xuống</string>
     <string name="btnReset">Đặt lại</string>

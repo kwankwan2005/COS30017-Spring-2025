@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="appName">ClimbingScoreTracker</string>
+    <string name="appName">Climbing Score Tracker</string>
     <string name="btnClimb">Climb</string>
     <string name="btnFall">Fall</string>
     <string name="btnReset">Reset</string>

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/landscape_background">
 
     <LinearLayout
         android:id="@+id/navBar"
@@ -25,16 +26,6 @@
             android:paddingBottom="10dp"
             android:text="@string/appName"
             android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnLanguage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#00FFFFFF"
-            android:paddingTop="20dp"
-            android:text="🇻🇳"
-            android:textAlignment="viewEnd" />
 
     </LinearLayout>
 
@@ -123,6 +114,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:enabled="false"
             android:text="@string/btnFall" />
 
         <Button
