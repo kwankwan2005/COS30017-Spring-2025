@@ -19,18 +19,15 @@ class ScoreTracker {
     // Climb method: Allow user to record a climb time
     fun climb() {
         if(!availableToClimb()) {
-            Log.d("ScoreKeeper", "Failed to climb, current score: " + score.toString() + ", current hold: " + hold.toString())
             return
         }
         hold++
         addScore()
-        Log.d("ScoreKeeper", "Climbed successfully, current score: " + score.toString() + ", current hold: " + hold.toString())
     }
 
     // Fall method
     fun fall() {
         if(!availableToFall()) {
-            Log.d("ScoreKeeper", "Failed to fall, current score: " + score.toString() + ", current hold: " + hold.toString())
             return
         }
         fall = true
@@ -41,8 +38,6 @@ class ScoreTracker {
         else {
             score -= 3
         }
-
-        Log.d("ScoreKeeper", "Falled successfully, current score: " + score.toString() + ", current hold: " + hold.toString())
     }
 
     // Reset method
@@ -50,8 +45,6 @@ class ScoreTracker {
         score = 0
         hold = 0
         fall = false
-
-        Log.d("ScoreKeeper", "Reset counter successfully")
     }
 
     // Return if it is available to fall
@@ -81,6 +74,5 @@ class ScoreTracker {
                 score += 3
             }
         }
-        Log.d("ScoreKeeper", "Add score for user in hold " + hold.toString())
     }
 }
