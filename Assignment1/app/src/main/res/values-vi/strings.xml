@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="appName">Climbing Score Tracker</string>
+    <string name="appName">Ghi Điểm Leo Núi</string>
     <string name="btnClimb">Leo lên</string>
     <string name="btnFall">Rơi xuống</string>
     <string name="btnReset">Đặt lại</string>

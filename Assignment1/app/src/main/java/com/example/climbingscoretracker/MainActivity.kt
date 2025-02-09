@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnFall = findViewById(R.id.btnFall)
         btnReset = findViewById(R.id.btnReset)
 
-
         btnClimb.setOnClickListener(this)
         btnFall.setOnClickListener(this)
         btnReset.setOnClickListener(this)
@@ -93,6 +92,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         Log.d("TrackerScreen", "Subscribed to changes in ViewModel")
     }
 
+    // Handle interaction
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btnClimb-> {
