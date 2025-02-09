@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     // Handle UI view
     private fun subscribeEventViewModel() {
         viewModel.scoreTracker.observe(this, Observer {
-            Log.d("Screen", "Receive new data from the ViewModel")
+            Log.d("TrackerScreen", "Receive new data from the ViewModel")
 
             txtScoreNumber.setText(it.getScore().toString())
 
