@@ -62,19 +62,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             var currentHold = it.getHold()
 
             // Display score color based on current hold
-            when (currentHold) {
-                in 1..3 -> {
-                    txtScoreNumber.setTextColor(Color.rgb(45,38,145))
+            if (!it.getFallStatus()) {
+                when (currentHold) {
+                    in 1..3 -> {
+                        txtScoreNumber.setTextColor(Color.rgb(45,38,145))
+                    }
+                    in 4..6 -> {
+                        txtScoreNumber.setTextColor(Color.rgb(38,145,74))
+                    }
+                    in 7..9 -> {
+                        txtScoreNumber.setTextColor(Color.rgb(168,50,50))
+                    }
+                    else -> {
+                        txtScoreNumber.setTextColor(Color.rgb(0,0,0))
+                    }
                 }
-                in 4..6 -> {
-                    txtScoreNumber.setTextColor(Color.rgb(38,145,74))
-                }
-                in 7..9 -> {
-                    txtScoreNumber.setTextColor(Color.rgb(168,50,50))
-                }
-                else -> {
-                    txtScoreNumber.setTextColor(Color.rgb(0,0,0))
-                }
+            }
+            else {
+                txtScoreNumber.setTextColor(Color.rgb(0,0,0))
             }
 
             // Display hold text

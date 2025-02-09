@@ -16,6 +16,10 @@ class ScoreTracker {
         return hold
     }
 
+    fun getFallStatus(): Boolean {
+        return fall
+    }
+
     // Climb method: Allow user to record a climb time
     fun climb() {
         if(!availableToClimb()) {
