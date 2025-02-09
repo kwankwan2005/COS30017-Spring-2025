@@ -109,4 +109,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("TrackerScreen", "Screen started")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("TrackerScreen", "Screen resumed")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("TrackerScreen", "Screen paused")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("TrackerScreen", "Screen stopped")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("TrackerScreen", "Screen destroyed")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("TrackerScreen", "Screen restarted")
+    }
 }
