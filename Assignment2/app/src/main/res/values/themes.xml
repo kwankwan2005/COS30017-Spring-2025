@@ -1,0 +1,36 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Assignment2" parent="Theme.Material3.DayNight.NoActionBar">
+
+    </style>
+
+
+    <style name="PrimaryColor">
+        <item name="android:textColor">@color/primary_color</item>
+    </style>
+
+    <style name="SecondaryColor">
+        <item name="android:textColor">@color/secondary_color</item>
+    </style>
+
+    <style name="StatusItemPrimary">
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:background">@drawable/status_item</item>
+    </style>
+
+    <style name="FilterTag" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_bg_color</item>
+        <item name="chipStrokeColor">@color/chip_text_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/secondary_color</item>
+        <item name="colorControlActivated">@color/primary_color</item>
+    </style>
+
+
+    <style name="Theme.Assignment2" parent="Base.Theme.Assignment2" />
+</resources>
