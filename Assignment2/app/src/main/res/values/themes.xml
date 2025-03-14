@@ -31,6 +31,5 @@
         <item name="colorControlActivated">@color/primary_color</item>
     </style>
 
-
     <style name="Theme.Assignment2" parent="Base.Theme.Assignment2" />
 </resources>

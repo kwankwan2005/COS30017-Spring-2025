@@ -25,7 +25,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtStatus"
+                android:id="@+id/txtProductNameDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_bold"
@@ -44,7 +44,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/txtCurrentBalance"
+            android:id="@+id/txtCurrentBalanceDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_rectangle_border_container"
@@ -137,6 +137,7 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chipAttributes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
@@ -156,7 +157,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/txtProductName"
+                    android:id="@+id/txtInstrumentNameDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
@@ -171,10 +172,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:numStars="5"
+                    android:isIndicator="true"
                     android:rating="2.5" />
 
                 <TextView
-                    android:id="@+id/txtRentingPrice"
+                    android:id="@+id/txtRentingPriceDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_black"
@@ -182,8 +184,6 @@
                     android:text="$180/mo"
                     android:textSize="60sp"
                     android:textStyle="bold" />
-
-
             </LinearLayout>
 
         </LinearLayout>
@@ -210,7 +210,7 @@
             android:paddingBottom="10dp"
             android:text="Next"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:backgroundTint="@color/white"
             app:cornerRadius="5dp"
             app:strokeColor="@color/default_stroke"
@@ -222,13 +222,13 @@
             android:layout_weight="0" />
 
         <Button
-            android:id="@+id/btnConfirmButton"
+            android:id="@+id/btnBorrowButton"
             app:cornerRadius="5dp"
             app:backgroundTint="@color/primary_color"
             app:strokeWidth="0.5dp"
             app:strokeColor="@color/primary_color"
             android:textColor="@color/white"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:fontFamily="@font/inter_bold"
