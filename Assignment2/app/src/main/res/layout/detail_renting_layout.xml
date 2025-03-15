@@ -245,7 +245,7 @@
                         android:hint="@string/name_input"
                         android:lines="1"
                         android:inputType="text"
-
+                        android:id="@+id/txtNameEditText"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -263,7 +263,7 @@
                         android:hint="@string/email_input"
                         android:lines="1"
                         android:inputType="textEmailAddress"
-
+                        android:id="@+id/txtEmailEditText"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 

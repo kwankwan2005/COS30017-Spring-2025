@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     //// SETTING UP THE VARIABLES FOR THE APP ////
     var currentInstrument = 0
-    var currentBalance = 550.45f;
+    var currentBalance = 550.00f;
     var authenticatedEmail = "";
     var authenticatedName = "";
 
