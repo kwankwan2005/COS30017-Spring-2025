@@ -3,4 +3,5 @@
     <string name="name_input">Name <font color='#FF0000'>*</font></string>
     <string name="email_input">Email <font color='#FF0000'>*</font></string>
     <string name="renting_input">Renting period (months) <font color='#FF0000'>*</font></string>
+    <string name="default_web_client_id">197275287926-4litcv21c3hb1aat2k6f5802lindh4pb.apps.googleusercontent.com</string>
 </resources>

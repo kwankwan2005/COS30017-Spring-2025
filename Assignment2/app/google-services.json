@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "197275287926",
+    "project_id": "sdmd-kwankwan-2025-asm2",
+    "storage_bucket": "sdmd-kwankwan-2025-asm2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197275287926:android:03e9054df9596530a17a57",
+        "android_client_info": {
+          "package_name": "com.example.assignment2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "197275287926-l22qri67sp47516qtqrlcq0v2nc9eap8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.assignment2",
+            "certificate_hash": "96bd73c751620fb4a3bf81a4a9d82caa590e5735"
+          }
+        },
+        {
+          "client_id": "197275287926-4litcv21c3hb1aat2k6f5802lindh4pb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA13LNczVMzFwC301D3CoU5Nkw05FnurRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "197275287926-4litcv21c3hb1aat2k6f5802lindh4pb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

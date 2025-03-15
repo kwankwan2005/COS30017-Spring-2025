@@ -27,9 +27,9 @@ import java.util.Date
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-
     //// SETTING UP THE ELEMENTS ON THE SCREEN ////
     lateinit var txtStatus: TextView
+    lateinit var txtSubStatus: TextView
     lateinit var txtBalance: TextView
 
     lateinit var imgLeftSide: ImageView
@@ -52,6 +52,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     //// SETTING UP THE VARIABLES FOR THE APP ////
     var currentInstrument = 0
     var currentBalance = 550.45f;
+    var authenticatedEmail = "";
+    var authenticatedName = "";
 
     //// DUMMY DATA FOR THE APP ////
     var acousticGuitar = Instrument(
@@ -112,6 +114,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         // Set element id to variables
         txtStatus = findViewById(R.id.txtStatus)
+        txtSubStatus = findViewById(R.id.txtSubStatus)
         txtBalance = findViewById(R.id.txtCurrentBalance)
 
         imgLeftSide = findViewById(R.id.imgLeftSide)
@@ -134,6 +137,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // Setup events listener
         btnNext.setOnClickListener(this)
         btnBorrow.setOnClickListener(this)
+        txtBalance.setOnClickListener(this)
 
         // Update greeting status based on current timestamp
         val currentHourDate = SimpleDateFormat("H")
@@ -149,15 +153,33 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         // Update UI
-        updateBalance()
+        updateSideBar()
+        updateSubStatus()
         updateInstrumentData()
 
+        Log.d("MainActivity", "Initialized the screen")
     }
 
-    // Update UI: Balance
-    fun updateBalance() {
-        // Update current balance
-        txtBalance.setText("$" + "%.2f".format(currentBalance))
+    // Update UI: Update substatus
+    fun updateSubStatus() {
+        Log.d("MainActivity", "Current authenticate data: " + authenticatedEmail)
+        if(authenticatedEmail.isEmpty()) {
+            txtSubStatus.setText("Ready to rent something?")
+        }
+        else {
+            txtSubStatus.setText("What's up, " + authenticatedName + "? \uD83D\uDC4B")
+        }
+    }
+
+    // Update UI: Authentication and balance
+    fun updateSideBar() {
+        if(authenticatedEmail.isEmpty()) {
+            txtBalance.setText("Sign in")
+        }
+        else {
+            txtBalance.setText("$" + "%.2f".format(currentBalance))
+        }
+        Log.d("MainActivity", "Sidebar updated")
     }
 
     // Update UI: Instrument data
@@ -261,14 +283,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 chipAccessories.addView(chip)
             }
         }
+
+        Log.d("MainActivity", "Instrument data updated")
     }
 
     // Event handler
     override fun onClick(v: View?) {
         when(v?.id) {
+            R.id.txtCurrentBalance -> {
+                Log.d("MainActivity", "Current balance clicked")
+                if(authenticatedEmail.isEmpty()) {
+                    val intent = Intent(this, LoginActivity::class.java)
+                    getLoginResult.launch(intent)
+                }
+            }
             R.id.btnBorrowButton -> { // Borrow button
+                Log.d("MainActivity", "Borrow button clicked")
+                // Check if user authenticated?
+                if(authenticatedEmail.isEmpty()) {
+                    showNotificationWithDismiss("Please sign in before continue to borrow.")
+                }
                 // Check if user has enough balance to rent at least a month
-                if(currentBalance < instrumentList[currentInstrument].price) {
+                else if(currentBalance < instrumentList[currentInstrument].price) {
                     showNotificationWithDismiss("You don't have enough money to rent this instrument for at least a month.")
                 }
                 else {
@@ -277,10 +313,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     intent.putExtra("InstrumentID", currentInstrument)
                     intent.putExtra("CurrentBalance", currentBalance)
                     intent.putExtra("InstrumentData", instrumentList[currentInstrument])
+                    intent.putExtra("DisplayName", authenticatedName)
+                    intent.putExtra("DisplayEmail", authenticatedEmail)
                     getResult.launch(intent)
+                    Log.d("MainActivity", "Switched intent successfully: Detail renting form")
                 }
             }
             R.id.btnNextButton -> {
+                Log.d("MainActivity", "Next button clicked")
                 // Move to the next instrument in the list
                 currentInstrument = (currentInstrument + 1) % (instrumentList.size)
                 updateInstrumentData()
@@ -300,6 +340,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     // Register for handling booking data
     private val getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        Log.d("MainActivity", "Receive result from renting form")
         if (it.resultCode == Activity.RESULT_OK) {
             // Update new balance
             currentBalance = it.data?.getFloatExtra("NewBalance", 0.0f)!!
@@ -315,10 +356,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             // Re-update UI
             updateInstrumentData()
-            updateBalance()
+            updateSideBar()
         }
         else {
             showNotificationWithDismiss("The booking has been cancelled.")
+        }
+    }
+
+    // Register for handling authentication
+    private val getLoginResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        Log.d("MainActivity", "Receive result from authenticating screen")
+        if (it.resultCode == Activity.RESULT_OK) {
+            // Update authentication data
+            authenticatedName = it.data?.getStringExtra("DisplayName")!!
+            authenticatedEmail = it.data?.getStringExtra("UserEmail")!!
+            // Display success notification
+            showNotificationWithDismiss("Signed in successfully as " + authenticatedName + ".")
+            // Re-update UI
+            updateSideBar()
+            updateSubStatus()
         }
     }
 

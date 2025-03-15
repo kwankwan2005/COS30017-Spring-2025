@@ -2,13 +2,15 @@ package com.example.assignment2
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -18,11 +20,12 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import org.w3c.dom.Text
+
 
 class DetailRenting : AppCompatActivity(), View.OnClickListener {
-    // Variables initiailize
+    //// SETTING UP THE ELEMENTS ON THE SCREEN ////
     lateinit var btnBack: ImageButton
     lateinit var txtProductNameDetail: TextView
     lateinit var txtCurrentBalanceDetail: TextView
@@ -93,8 +96,12 @@ class DetailRenting : AppCompatActivity(), View.OnClickListener {
             imgProductDetail.setImageDrawable(getDrawable(it.image))
         }
 
-        txtRentingPriceDetail.setText("$" + "%.0f".format(item?.price) + "/mo")
+        txtRentingPriceDetail.setText("$" + "%.0f".format(item?.price))
         txtCurrentBalanceDetail.setText("$" + "%.2f".format(currentBalance))
+
+        // Pre-filled form data (as user already authenticated)
+        txtName.editText?.setText(intent.getStringExtra("DisplayName"))
+        txtEmail.editText?.setText(intent.getStringExtra("DisplayEmail"))
 
         // Add chips to UI
         chipDetailsArea.removeAllViews() // Delete all chips before adding new one
@@ -138,6 +145,34 @@ class DetailRenting : AppCompatActivity(), View.OnClickListener {
             // Add chip to the chip group
             chipDetailsArea.addView(chip)
         }
+
+        // Subscribe event when there's a change on renting period
+        // Render different price in the UI
+        val numPeriodEditText = findViewById<TextInputEditText>(R.id.txtRentingPeriodEditText)
+
+        numPeriodEditText.addTextChangedListener(
+            object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+                // When number of period is changed,
+                // update new price based on number of period
+                override fun afterTextChanged(editable: Editable?) {
+                    var rentingPeriod = editable.toString()
+                    if(rentingPeriod.isEmpty() || rentingPeriod == "0") { // Empty or renting period is zero
+                        // Set the price to the original price for at least a month
+                        txtRentingPriceDetail.setText("$" + "%.0f".format(item?.price))
+                    }
+                    else {
+                        // Set the price to the original price times the number of months
+                        var rentingPeriodNum = item?.price?.times(rentingPeriod.toFloat())
+                        txtRentingPriceDetail.setText("$" + "%.0f".format(rentingPeriodNum))
+                    }
+                }
+            })
+
+        Log.d("DetailRenting", "Screen initialized")
     }
 
     // Input validation function
@@ -157,26 +192,31 @@ class DetailRenting : AppCompatActivity(), View.OnClickListener {
 
         // 1st check: Name input
         if(name.toString().isEmpty()) {
+            Log.d("DetailRenting", "[Input validation] Empty name")
             txtName.setError("Please enter your name")
             allowSubmit = false
         }
 
         // 2nd check: Email input
         if(email.toString().isEmpty()) {
+            Log.d("DetailRenting", "[Input validation] Empty email")
             txtEmail.setError("Please enter your email")
             allowSubmit = false
         }
         else if(!emailRegex.matches(email.toString())) {
+            Log.d("DetailRenting", "[Input validation] Wrong email format")
             txtEmail.setError("Please check email format")
             allowSubmit = false
         }
 
         // 3rd check: Renting period
         if(rentingPeriod.toString().isEmpty()) {
+            Log.d("DetailRenting", "[Input validation] Empty renting period")
             txtRentingPeriod.setError("Please enter your renting period")
             allowSubmit = false
         }
         else if(!(rentingPeriod.toString().toInt() > 0)) {
+            Log.d("DetailRenting", "[Input validation] Renting period not integer")
             txtRentingPeriod.setError("Renting period must be greater than 0")
             allowSubmit = false
         }
@@ -191,6 +231,7 @@ class DetailRenting : AppCompatActivity(), View.OnClickListener {
         // Only check if the input are fine
         if(allowSubmit) {
             if(currentBalance - (item?.price!! * rentingPeriod.toString().toInt()) < 0) { // Using "!!" symbol to get non-null value
+                Log.d("DetailRenting", "[Input validation] Not enough balance")
                 showNotificationWithDismiss("You don't have enough money to rent this instrument within your renting period.")
                 allowSubmit = false
             }
@@ -198,6 +239,7 @@ class DetailRenting : AppCompatActivity(), View.OnClickListener {
 
         // Validation pass, back to intent
         if(allowSubmit) {
+            Log.d("DetailRenting", "[Input validation] Allowed for purchase")
             // Set new attributes to the item
             item?.rented = true
             item?.rating = ratingBarDetails.rating
@@ -237,12 +279,15 @@ class DetailRenting : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btnBack -> {
+                Log.d("DetailRenting", "Back button pressed")
                 onBackPressed() // Back to the first screen
             }
             R.id.btnCancelButton -> {
+                Log.d("DetailRenting", "Cancel button pressed")
                 onBackPressed() // Back to the first screen
             }
             R.id.btnConfirmButton -> {
+                Log.d("DetailRenting", "Confirm button pressed")
                 inputValidation() // Validate input
             }
         }
