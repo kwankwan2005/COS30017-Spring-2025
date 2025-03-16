@@ -139,25 +139,32 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnBorrow.setOnClickListener(this)
         txtBalance.setOnClickListener(this)
 
+        // Update UI
+        updateSideBar()
+        updateSubStatus()
+        updateInstrumentData()
+        updateGreetingMessage()
+
+        Log.d("MainActivity", "Initialized the screen")
+    }
+
+    // Update UI: Update greeting message based on current time in the phone
+    fun updateGreetingMessage() {
         // Update greeting status based on current timestamp
         val currentHourDate = SimpleDateFormat("H")
         val currentTime = currentHourDate.format(Date()).toInt()
         if(currentTime >= 12 && currentTime < 17) {
             txtStatus.setText("Good afternoon \uD83C\uDF25\uFE0F")
         }
-        else if (currentTime >= 17 && currentTime <= 23 || currentTime >= 0 && currentTime <= 6) {
+        else if (currentTime >= 17 && currentTime <= 21) {
             txtStatus.setText("Good evening \uD83C\uDF19")
+        }
+        else if (currentTime >= 20 && currentTime <= 23 || currentTime >= 0 && currentTime <= 4) {
+            txtStatus.setText("Good night ⭐")
         }
         else {
             txtStatus.setText("Good morning ☀\uFE0F")
         }
-
-        // Update UI
-        updateSideBar()
-        updateSubStatus()
-        updateInstrumentData()
-
-        Log.d("MainActivity", "Initialized the screen")
     }
 
     // Update UI: Update substatus
@@ -357,9 +364,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             // Re-update UI
             updateInstrumentData()
             updateSideBar()
+            updateGreetingMessage()
         }
         else {
             showNotificationWithDismiss("The booking has been cancelled.")
+            updateGreetingMessage()
         }
     }
 
@@ -375,6 +384,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             // Re-update UI
             updateSideBar()
             updateSubStatus()
+            updateGreetingMessage()
         }
     }
 
