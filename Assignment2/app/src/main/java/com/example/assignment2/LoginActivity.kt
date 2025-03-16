@@ -1,5 +1,6 @@
 package com.example.assignment2
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -52,11 +53,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener  {
             .addCredentialOption(googleIdOption)
             .build()
 
+        var context = this // Ensure the current context is Activity-based for display login pop-up
+
         lifecycleScope.launch {
             try {
                 // Get credential
                 val result = credentialManager.getCredential(
-                    context = baseContext,
+                    context = context,
                     request = request
                 )
 
