@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Tutorial07</string>
+    <string name="longtext">Long</string>
+    <string name="shorttext">Short</string>
+</resources>
