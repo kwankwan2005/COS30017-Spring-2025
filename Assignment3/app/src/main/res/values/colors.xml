@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Primary colors -->
+    <color name="blue">#3366FF</color>
+    <color name="light_blue">#E8F0FF</color>
+
+    <!-- Text colors -->
+    <color name="text_dark">#1A1A1A</color>
+    <color name="text_light">#FFFFFF</color>
+    <color name="text_muted">#888888</color>
+
+    <!-- Status colors -->
+    <color name="green">#4CAF50</color>
+    <color name="red">#F44336</color>
+    <color name="gray">#4B5563</color>
+
+    <!-- Misc -->
+    <color name="background">#FFFFFF</color>
+    <color name="card_background">#F9F9F9</color>
+    <color name="default_button_bg">#E5E7EB</color>
+    <color name="default_button_text">#374151</color>
+    <color name="divider">#DDDDDD</color>
+    <color name="purple">#8B5CF6</color>
+
+</resources>
