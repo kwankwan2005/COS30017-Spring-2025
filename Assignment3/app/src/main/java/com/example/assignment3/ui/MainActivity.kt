@@ -9,12 +9,15 @@ import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.example.assignment3.util.PerformanceTest
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.assignment3.R
 import com.example.assignment3.adapter.TransactionAdapter
 import com.example.assignment3.viewmodel.MainViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     // Elements setup
@@ -43,6 +46,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // Set button click listeners
         btnAdd.setOnClickListener(this)
         btnViewAll.setOnClickListener(this)
+
+        // EXPERIMENTAL INVESTIGATION
+        // DO NOT USE
+//        lifecycleScope.launch {
+//            PerformanceTest.runInsertPerformanceTest(applicationContext)
+//            PerformanceTest.runReadPerformanceTest(applicationContext)
+//            PerformanceTest.runScalabilityTest(applicationContext)
+//        }
 
         // Observe ViewModel to update UI
         viewModel.totalIncome.observe(this) { income ->
