@@ -2,14 +2,17 @@ package com.example.assignment3.util
 
 import com.example.assignment3.R
 
+// Data class representing the style for a category
 data class CategoryStyle(
     val iconResId: Int,
     val bgColorResId: Int,
     val fgColorResId: Int
 )
 
+// Object to map category names to their corresponding styles
 object CategoryStyleMapper {
 
+    // Function to get the style for a given category
     fun getStyle(category: String): CategoryStyle {
         return when (category.lowercase()) {
             "salary" -> CategoryStyle(R.drawable.ic_salary, R.color.bg_green_light, R.color.bg_green)

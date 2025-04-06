@@ -40,6 +40,7 @@ dependencies {
     val lifecycle_version = "2.8.7"
     val room_version = "2.6.1"
 
+    implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
 

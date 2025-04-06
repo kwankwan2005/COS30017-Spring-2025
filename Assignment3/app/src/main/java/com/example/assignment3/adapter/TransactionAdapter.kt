@@ -11,22 +11,29 @@ import com.example.assignment3.R
 import com.example.assignment3.data.model.Transaction
 import com.example.assignment3.util.CategoryStyleMapper
 
-class TransactionAdapter(private val mList: List<Transaction>, private val onItemClick: (Transaction) -> Unit) :
-    RecyclerView.Adapter<TransactionAdapter.ViewHolderClass>() {
+// Adapter class for displaying a list of transactions in a RecyclerView
+class TransactionAdapter(
+    private val mList: List<Transaction>, // List of transactions to display
+    private val onItemClick: (Transaction) -> Unit // Click listener for each item
+) : RecyclerView.Adapter<TransactionAdapter.ViewHolderClass>() {
 
+    // Creates and returns a ViewHolder object
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_transaction, parent, false)
         return ViewHolderClass(itemView)
     }
 
+    // Binds data to the ViewHolder
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
         val transaction = mList[position]
         val context = holder.itemView.context
 
+        // Set the category and title text
         holder.txtCategory.text = transaction.category
         holder.txtTitle.text = transaction.title
 
+        // Determine if the transaction is income or expense and set the amount text and color
         val isIncome = transaction.isIncome
         val amountText = (if (isIncome) "+" else "-") + String.format("$%.2f", transaction.amount)
         holder.txtAmount.text = amountText
@@ -34,27 +41,31 @@ class TransactionAdapter(private val mList: List<Transaction>, private val onIte
             ContextCompat.getColor(context, if (isIncome) R.color.green else R.color.red)
         )
 
+        // Get the style for the category and set the icon and background colors
         val style = CategoryStyleMapper.getStyle(transaction.category)
-
         holder.imgIcon.setImageResource(style.iconResId)
         holder.imgIcon.setColorFilter(ContextCompat.getColor(context, style.fgColorResId))
 
+        // Set the background color of the icon container
         val bgDrawable = ContextCompat.getDrawable(context, R.drawable.bg_icon_circle)?.mutate()
         bgDrawable?.setTint(ContextCompat.getColor(context, style.bgColorResId))
         holder.iconContainer.background = bgDrawable
 
+        // Set the click listener for the item
         holder.itemView.setOnClickListener {
             onItemClick(transaction)
         }
     }
 
+    // Returns the total number of items
     override fun getItemCount(): Int = mList.size
 
+    // ViewHolder class to hold the views for each item
     class ViewHolderClass(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val txtCategory: TextView = itemView.findViewById(R.id.txtCategory)
-        val txtTitle: TextView = itemView.findViewById(R.id.txtTransactionName)
-        val txtAmount: TextView = itemView.findViewById(R.id.txtAmount)
-        val imgIcon: ImageView = itemView.findViewById(R.id.imgCategoryIcon)
-        val iconContainer: View = itemView.findViewById(R.id.iconContainer) // Make sure this is the FrameLayout or container for the icon
+        val txtCategory: TextView = itemView.findViewById(R.id.txtCategory) // TextView for category
+        val txtTitle: TextView = itemView.findViewById(R.id.txtTransactionName) // TextView for title
+        val txtAmount: TextView = itemView.findViewById(R.id.txtAmount) // TextView for amount
+        val imgIcon: ImageView = itemView.findViewById(R.id.imgCategoryIcon) // ImageView for category icon
+        val iconContainer: View = itemView.findViewById(R.id.iconContainer) // Container for the icon
     }
 }

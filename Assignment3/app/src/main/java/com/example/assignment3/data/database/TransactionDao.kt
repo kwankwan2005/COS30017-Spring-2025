@@ -5,6 +5,18 @@ import com.example.assignment3.data.model.Transaction
 
 @Dao
 interface TransactionDao {
+    // Insert new transaction
+    @Insert
+    suspend fun insertTransaction(transaction: Transaction)
+
+    // Update a transaction
+    @Update
+    suspend fun updateTransaction(transaction: Transaction)
+
+    // Delete a transaction
+    @Delete
+    suspend fun deleteTransaction(transaction: Transaction)
+
     // Get a single transaction by ID
     @Query("SELECT * FROM transactions WHERE id = :id")
     suspend fun getTransactionById(id: Int): Transaction?
@@ -25,19 +37,6 @@ interface TransactionDao {
     @Query("SELECT * FROM transactions WHERE date ORDER BY date DESC, id DESC LIMIT :limit")
     suspend fun getRecentTransactions(limit: Int): List<Transaction>
 
-    // Insert
-    @Insert
-    suspend fun insertTransaction(transaction: Transaction)
-
-    // Update
-    @Update
-    suspend fun updateTransaction(transaction: Transaction)
-
-    // Delete
-    @Delete
-    suspend fun deleteTransaction(transaction: Transaction)
-
-
     // Get total amount for a category in a month
     @Query("SELECT SUM(amount) FROM transactions WHERE category = :category AND date BETWEEN :start AND :end")
     suspend fun getMonthlyCategorySpending(category: String, start: Long, end: Long): Double?
@@ -50,6 +49,7 @@ interface TransactionDao {
     @Query("SELECT SUM(amount) FROM transactions WHERE isIncome = 0 AND date BETWEEN :start AND :end")
     suspend fun getTotalExpenseInPeriod(start: Long, end: Long): Double?
 
+    // Delete all transactions
     @Query("DELETE FROM transactions")
     suspend fun deleteAllTransactions()
 }
