@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.assignment3.R
@@ -20,6 +21,7 @@ class AddEditTransactionActivity : AppCompatActivity(), View.OnClickListener {
     private var transactionId: Int = -1
     private var isEditing = false
 
+    private lateinit var txtScreenTitle: TextView
     private lateinit var txtTitle: EditText
     private lateinit var txtAmount: EditText
     private lateinit var btnIncome: Button
@@ -29,6 +31,7 @@ class AddEditTransactionActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var btnSubmit: Button
     private lateinit var btnCancel: Button
     private lateinit var btnBack: ImageButton
+    private lateinit var cardTransactionType: CardView
 
     private var isIncome = true
     private var selectedDate: Long = System.currentTimeMillis()
@@ -41,6 +44,7 @@ class AddEditTransactionActivity : AppCompatActivity(), View.OnClickListener {
         transactionId = intent.getIntExtra("transaction_id", -1)
         isEditing = transactionId != -1
 
+        txtScreenTitle = findViewById(R.id.txtScreenTitle)
         txtTitle = findViewById(R.id.txtTitle)
         txtAmount = findViewById(R.id.txtAmount)
         btnIncome = findViewById(R.id.btnIncome)
@@ -50,6 +54,7 @@ class AddEditTransactionActivity : AppCompatActivity(), View.OnClickListener {
         btnSubmit = findViewById(R.id.btnSubmit)
         btnCancel = findViewById(R.id.btnCancel)
         btnBack = findViewById(R.id.btnBack)
+        cardTransactionType = findViewById(R.id.cardTransactionType)
 
         btnIncome.setOnClickListener(this)
         btnExpense.setOnClickListener(this)
@@ -59,8 +64,15 @@ class AddEditTransactionActivity : AppCompatActivity(), View.OnClickListener {
 
         setupForm()
 
+
         if (isEditing) {
+            txtScreenTitle.setText("Edit transaction")
             loadTransaction()
+            cardTransactionType.visibility = View.GONE
+        }
+        else {
+            txtScreenTitle.setText("Add transaction")
+            cardTransactionType.visibility = View.VISIBLE
         }
 
         txtDate.text = dateFormat.format(Date(selectedDate))
@@ -214,6 +226,7 @@ class AddEditTransactionActivity : AppCompatActivity(), View.OnClickListener {
                 handleSubmit()
             }
             R.id.btnCancel, R.id.btnBack -> {
+                setResult(RESULT_OK)
                 finish()
             }
         }

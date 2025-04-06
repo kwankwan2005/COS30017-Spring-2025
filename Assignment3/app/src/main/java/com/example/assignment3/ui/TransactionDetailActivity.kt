@@ -2,6 +2,7 @@ package com.example.assignment3.ui
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -14,6 +15,7 @@ import com.example.assignment3.util.CategoryStyleMapper
 import com.example.assignment3.viewmodel.TransactionDetailViewModel
 import java.text.SimpleDateFormat
 import java.util.*
+import com.example.assignment3.ui.ChartFragment
 
 class TransactionDetailActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -27,6 +29,7 @@ class TransactionDetailActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var imgCategorySummaryIcon: ImageView
     private lateinit var btnEdit: Button
     private lateinit var btnDelete: Button
+    private lateinit var btnBack: ImageButton
 
     private var transactionId: Int = -1
 
@@ -54,9 +57,11 @@ class TransactionDetailActivity : AppCompatActivity(), View.OnClickListener {
         imgCategorySummaryIcon = findViewById(R.id.imgCategorySummaryIcon)
         btnEdit = findViewById(R.id.btnEdit)
         btnDelete = findViewById(R.id.btnDelete)
+        btnBack = findViewById(R.id.btnBack)
 
         btnEdit.setOnClickListener(this)
         btnDelete.setOnClickListener(this)
+        btnBack.setOnClickListener(this)
 
         transactionId = intent.getIntExtra("transaction_id", -1)
         if (transactionId == -1) {
@@ -90,6 +95,22 @@ class TransactionDetailActivity : AppCompatActivity(), View.OnClickListener {
                 imgCategorySummaryIcon.setImageResource(style.iconResId)
                 imgCategoryIcon.setColorFilter(getColor(style.fgColorResId))
                 imgCategorySummaryIcon.setColorFilter(getColor(style.fgColorResId))
+
+                // Set args for embedded chart fragment
+                val calendar = Calendar.getInstance().apply {
+                    timeInMillis = it.date
+                    set(Calendar.DAY_OF_MONTH, 1)
+                    set(Calendar.HOUR_OF_DAY, 0)
+                    set(Calendar.MINUTE, 0)
+                    set(Calendar.SECOND, 0)
+                    set(Calendar.MILLISECOND, 0)
+                }
+                val monthStart = calendar.timeInMillis
+                calendar.add(Calendar.MONTH, 1)
+                val monthEnd = calendar.timeInMillis
+
+                val chartFragment = supportFragmentManager.findFragmentById(R.id.chartContainer) as ChartFragment
+                chartFragment.loadChartData(applicationContext, it.category, monthStart, monthEnd)
             }
         })
 
@@ -120,6 +141,10 @@ class TransactionDetailActivity : AppCompatActivity(), View.OnClickListener {
                         .setNegativeButton("Cancel", null)
                         .show()
                 }
+            }
+            R.id.btnBack -> {
+                setResult(RESULT_OK)
+                finish()
             }
         }
     }

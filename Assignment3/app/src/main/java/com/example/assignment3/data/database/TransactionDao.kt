@@ -17,6 +17,10 @@ interface TransactionDao {
     @Query("SELECT * FROM transactions WHERE date BETWEEN :start AND :end ORDER BY date DESC, id DESC")
     suspend fun getTransactionsInRange(start: Long, end: Long): List<Transaction>
 
+    // Get transactions by date and category
+    @Query("SELECT * FROM transactions WHERE category = :category AND date BETWEEN :start AND :end ORDER BY date DESC, id DESC")
+    suspend fun getTransactionsCategoryInRange(category: String, start: Long, end: Long): List<Transaction>
+
     // Get recent transactions
     @Query("SELECT * FROM transactions WHERE date ORDER BY date DESC, id DESC LIMIT :limit")
     suspend fun getRecentTransactions(limit: Int): List<Transaction>
