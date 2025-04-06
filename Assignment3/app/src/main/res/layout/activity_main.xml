@@ -68,7 +68,7 @@
                     android:id="@+id/txtBalanceLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Today's spending"
+                    android:text="Remaining budget"
                     android:textColor="@android:color/white"
                     android:textSize="25sp" />
 
@@ -97,7 +97,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/txtIncome"
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Income"
@@ -123,7 +123,6 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/txtExpense"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Expenses"
@@ -162,7 +161,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTransactions"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:clipToPadding="false"
             app:layout_constraintBottom_toTopOf="@id/btnAdd"

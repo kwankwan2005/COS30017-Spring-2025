@@ -282,8 +282,8 @@
                         android:id="@+id/spinnerCategory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:spinnerMode="dropdown"
-                        android:background="@android:color/transparent"/>
+                        android:background="@android:color/transparent"
+                        android:spinnerMode="dropdown" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

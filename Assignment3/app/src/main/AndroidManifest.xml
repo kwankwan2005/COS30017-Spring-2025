@@ -21,6 +21,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.TransactionDetailActivity">
+
+        </activity>
+
+        <activity
+            android:name=".ui.AddEditTransactionActivity">
+
+        </activity>
+
+        <activity
+            android:name=".ui.TransactionListActivity">
+
+        </activity>
     </application>
 
 </manifest>

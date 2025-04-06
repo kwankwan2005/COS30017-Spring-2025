@@ -25,4 +25,29 @@
     <color name="divider">#DDDDDD</color>
     <color name="purple">#8B5CF6</color>
 
+    <!-- Category colors -->
+    <color name="bg_green">#388E3C</color>
+    <color name="bg_green_light">#E0F2F1</color>
+
+    <color name="bg_pink">#D81B60</color>
+    <color name="bg_pink_light">#FCE4EC</color>
+
+    <color name="bg_blue">#1976D2</color>
+    <color name="bg_blue_light">#E3F2FD</color>
+
+    <color name="bg_purple">#7B1FA2</color>
+    <color name="bg_purple_light">#F3E5F5</color>
+
+    <color name="bg_orange">#F57C00</color>
+    <color name="bg_orange_light">#FFF3E0</color>
+
+    <color name="bg_red">#D32F2F</color>
+    <color name="bg_red_light">#FFEBEE</color>
+
+    <color name="bg_brown">#5D4037</color>
+    <color name="bg_brown_light">#EFEBE9</color>
+
+    <color name="bg_gray">#9E9E9E</color>
+    <color name="bg_gray_light">#F5F5F5</color>
+
 </resources>
